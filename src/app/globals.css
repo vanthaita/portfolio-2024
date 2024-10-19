@@ -13,15 +13,47 @@
     --foreground: #ededed;
   }
 }
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.circle {
+  height: 24px;
+  width: 24px;
+  border-radius: 24px;
+  background-color: black;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999999; /* so that it stays on top of all other elements */
 }
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+.navbar-container {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden; /* Prevents overflow */
+}
+
+
+
+
+.fixed-time {
+  width: 200px; /* Set your desired width */
+  height: 50px; /* Set your desired height */
+}
+/* globals.css */
+html, body {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+section {
+  transform-origin: center;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }

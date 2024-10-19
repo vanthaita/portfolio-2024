@@ -12,6 +12,14 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      spacing: {
+        'space-2xs': '4px',
+        'space-lg': '24px',
+        'space-sm': '12px',
+      },
+      animation: {
+        'spin-slow': "spin 3s linear infinite",
+      }
     },
   },
   plugins: [],
