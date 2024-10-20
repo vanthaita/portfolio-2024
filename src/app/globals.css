@@ -38,6 +38,22 @@
 }
 
 
+.section-maximalist {
+  padding: 100px 0;
+  text-align: center;
+  font-size: 3rem; /* Large text for a bold maximalist look */
+  color: white;
+  background-color: #000; /* Dark background for contrast */
+  overflow: hidden; /* Prevents content overflow during animation */
+  transition: background-color 1s ease-in-out;
+}
+
+.section-maximalist h1 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
 
 
 .fixed-time {

@@ -41,7 +41,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="top-0 z-40 w-full">
+    <header className="top-0 z-40 w-full px-4">
       <div className="mt-6 flex grid-cols-12 flex-row items-start justify-between gap-x-6 lg:grid lg:items-center">
         <div className="col-span-8 flex flex-col items-start gap-x-10 gap-y-4 lg:flex-row lg:items-center">
           <div className="w-fit">

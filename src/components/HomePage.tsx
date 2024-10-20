@@ -7,7 +7,6 @@ import { ScreenFitText } from './ScreenFillText';
 const HomePage: React.FC = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const localTimeRef = useRef<HTMLDivElement | null>(null);
-  const overlayRef = useRef<HTMLDivElement | null>(null);
   const pageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -25,18 +24,6 @@ const HomePage: React.FC = () => {
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.5, delay: 0.5 }
       );
-    }
-
-    if (overlayRef.current) {
-      gsap.to(overlayRef.current, {
-        opacity: 0,
-        duration: 1.5,
-        delay: 0.5,
-        ease: 'power2.out',
-        onComplete: () => {
-          if (overlayRef.current) overlayRef.current.style.display = 'none';
-        },
-      });
     }
   }, []);
 
@@ -58,11 +45,9 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-[90vh]"> 
-      <div ref={overlayRef} className="fixed top-0 left-0 w-full h-full bg-black z-50 flex items-center justify-center" style={{ opacity: 1 }}></div>
-
+    <div className="relative h-[90vh] px-4"> 
       <div ref={pageRef} className="flex flex-col items-center h-full relative">
-        <div className="container flex justify-center mt-10">
+        <div className="container flex justify-center ms:items-center ms:flex-col-reverse">
           <ScreenFitText />
           <svg ref={svgRef} width="1382.4" height="179.2" viewBox="0 0 1382.4 179.2" xmlns="http://www.w3.org/2000/svg">
           <g id="svgGroup" strokeLinecap="round" fillRule="nonzero" fontSize="9pt" stroke="#000" strokeWidth="0.25mm" fill="#131311">
@@ -78,7 +63,6 @@ const HomePage: React.FC = () => {
             </g>
           </svg>
         </div>
-
         <LocalTime />
       </div>
     </div>

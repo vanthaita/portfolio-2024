@@ -23,7 +23,7 @@ export const ScreenFitText = () => {
       }
   
       const containerWidth = container.offsetWidth;
-      let min = 1;
+      let min = 20;
       let max = 2500;
   
       while (min <= max) {
@@ -69,27 +69,28 @@ export const ScreenFitText = () => {
   }, []);
   return (
     <div
-  className="flex h-screen w-full items-center overflow-hidden "
-  ref={containerRef}
->
-{/* `   <div
-      ref={resumeRef}
-      className="text-4xl font-bold text-slate-700 leading-none mb-10 flex justify-start w-full mt-10 cursor-pointer underline"
+      className="flex h-screen w-full items-center overflow-hidden"
+      ref={containerRef}
     >
-      Resume
-    </div> */}
-  <span
-    className="text-5xl font-bold text-slate-700 leading-none mb-10 mt-10"
-  >
-    I craft modern web and mobile applications, leveraging cutting-edge technologies like Next.js, Expo, and PostgreSQL to bring your ideas to life.
-  </span>
-  <span
-    className="absolute -bottom-4 left-0 mx-auto whitespace-nowrap text-center font-bold uppercase text-slate-900"
-    ref={textRef}
-  >
-    Available for freelance work
-  </span>
-</div>
+    {/* `   <div
+          ref={resumeRef}
+          className="text-4xl font-bold text-slate-700 leading-none mb-10 flex justify-start w-full mt-10 cursor-pointer underline"
+        >
+          Resume
+        </div> */}
+      <span
+        className="text-5xl font-bold text-slate-700 leading-none md:mb-16 absolute bottom-4 left-0"
+      >
+        <svg stroke="currentColor" fill="none" stroke-width="1.25" viewBox="6 6 12 12" stroke-linecap="round" stroke-linejoin="round" className="m-0 size-4 p-0 md:size-6 mb-4" color="#8C8C73" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="7" y1="7" x2="17" y2="17"></line><polyline points="17 7 17 17 7 17"></polyline></svg>
+        I craft modern web and mobile applications, leveraging cutting-edge technologies like Next.js, Expo, and PostgreSQL to bring your ideas to life.
+      </span>
+      <span
+        className="absolute -bottom-4 left-0 mx-auto whitespace-nowrap text-center font-bold uppercase text-slate-900"
+        ref={textRef}
+      >
+        Available for work
+      </span>
+    </div>
 
   );
 };
