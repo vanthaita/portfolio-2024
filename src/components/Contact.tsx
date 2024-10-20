@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
   }, []);
 
   return (
-    <div ref={contactRef} className="min-h-screen flex flex-col justify-center items-center bg-white px-4">
+    <div ref={contactRef} className="min-h-screen flex flex-col justify-center items-center bg-black px-4">
       <h2 className="text-3xl font-bold text-gray-800">Contact Us</h2>
       <p className="text-lg text-gray-600 max-w-md text-center mt-4">
         Have any questions or want to work with us? Feel free to get in touch. We're always open to new opportunities and collaborations!

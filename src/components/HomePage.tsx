@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-[90vh] px-4"> 
+    <div className="relative h-[90vh] px-4 mb-8"> 
       <div ref={pageRef} className="flex flex-col items-center h-full relative">
         <div className="container flex justify-center ms:items-center ms:flex-col-reverse">
           <ScreenFitText />

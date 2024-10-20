@@ -33,7 +33,7 @@ const PreLoader: React.FC<{ onLoadingComplete: () => void }> = ({ onLoadingCompl
       <AnimatePresence>
         {loading && (
           <motion.div
-            className="fixed inset-0 flex items-center justify-center bg-white z-50"
+            className="fixed inset-0 flex items-center justify-center bg-[#B1B1B1] z-50"
             initial="hidden"
             animate="visible"
             exit="exit"
