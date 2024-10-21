@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FiCheckSquare, FiX } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Define the shape of a Notification
 interface NotificationType {
   id: number;
   text: string;
 }
 
-// Define the props for the Notification component
 interface NotificationProps {
   text: string;
   id: number;
@@ -72,7 +70,7 @@ const Notification: React.FC<NotificationProps> = ({ text, id, removeNotif }) =>
   );
 };
 
-export default SlideInNotifications;
+export default SlideInNotifications; 
 
 const generateRandomNotif = (): NotificationType => {
   const names = [

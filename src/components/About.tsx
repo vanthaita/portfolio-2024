@@ -13,7 +13,6 @@ const AboutMe: React.FC = () => {
   const isInViewAbout = useInView(aboutRef, { once: true, amount: 0.3 });
   const isInViewText = useInView(textRef, { once: true, amount: 0.2 });
 
-  // Staggered animation for appearing text
   const staggeredTextVariants = {
     hidden: { y: 50, opacity: 0 },
     visible: {
@@ -33,7 +32,6 @@ const AboutMe: React.FC = () => {
     visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
   };
 
-  // GSAP-based scroll-triggered animations
   useEffect(() => {
     if (aboutRef.current && textRef.current) {
       gsap.fromTo(
@@ -73,7 +71,7 @@ const AboutMe: React.FC = () => {
   return (
     <motion.div
       ref={aboutRef}
-      className="min-h-screen flex flex-col justify-center items-center bg-black px-4 relative"
+      className="min-h-screen flex flex-col justify-center items-center px-4 relative"
       initial="hidden"
       animate={isInViewAbout ? 'visible' : 'hidden'}
       variants={staggeredTextVariants}
@@ -87,7 +85,7 @@ const AboutMe: React.FC = () => {
           strokeLinecap="round"
           strokeLinejoin="round"
           className="m-0 size-8 p-0 md:size-16"
-          color="#fff"
+          color="#B7B7B7"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"

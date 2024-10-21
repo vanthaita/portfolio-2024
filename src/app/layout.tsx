@@ -1,18 +1,19 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
-import Provider from '@/components/Provider';
-import localFont from "next/font/local";
-import "./globals.css";
-import PreloaderWrapper from '@/components/PreloaderWrapper';
+import localFont from 'next/font/local';
+import './globals.css';
+import dynamic from 'next/dynamic';
+
+const Provider = dynamic(() => import('@/components/Provider/Provider'), { ssr: false });
 
 const geistSans = localFont({
-  src: "./fonts/Montreal Medium.otf",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+  src: './fonts/Montreal Medium.otf',
+  variable: '--font-geist-sans',
+  weight: '100 900',
 });
 
 export const metadata = {
-  title: "TATHAI",
+  title: 'TATHAI',
 };
 
 export default function RootLayout({
@@ -24,12 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <Provider>
         <body className={`${geistSans.variable} bg-black antialiased mx-auto`}>
-          <PreloaderWrapper>
-            <div className="navbar-container">
-              <Navbar />
-            </div>
-            <main>{children}</main>
-          </PreloaderWrapper>
+          <div className="navbar-container">
+            <Navbar />
+          </div>
+          <main>{children}</main>
         </body>
       </Provider>
     </html>

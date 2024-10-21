@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import HireMe from './HireMe';
+import HireMe from '../HireMe';
 import Link from 'next/link';
 
 interface MenuProps {

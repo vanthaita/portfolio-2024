@@ -2,14 +2,18 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import throttle from 'lodash/throttle';
-
+import PreloaderWrapper from "./PreloaderWrapper";
 export default function Provider({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
+  const [isClient, setIsClient] = useState(false)
+ 
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   useEffect(() => {
     const handleMouseMove = throttle((event: MouseEvent) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
@@ -23,7 +27,6 @@ export default function Provider({
 
   return (
     <>
-      {/* Outer circle */}
       <motion.div
         className="fixed pointer-events-none z-50"
         style={{
@@ -45,13 +48,14 @@ export default function Provider({
           ease: "easeInOut",
         }}
       />
-      {/* Page content */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        {children}
+        <PreloaderWrapper>
+          {isClient && children}
+        </PreloaderWrapper>
       </motion.div>
     </>
   );

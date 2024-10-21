@@ -4,14 +4,13 @@ import HomePage from '@/components/HomePage';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { RevealLinks } from '@/components/RevealLink';
-import Menu from '@/components/Menu';
-import { ClipPathLinksComponent } from '@/components/ClipPathLinks';
-import { HoverImageLinks } from '@/components/HoverimageLinks';
+import { RevealLinks } from '@/components/Link/RevealLink';
+import { ClipPathLinksComponent } from '@/components/Link/ClipPathLinks';
+import { HoverImageLinks } from '@/components/Link/HoverimageLinks';
 import AboutMe from '@/components/About';
-import ContractMePage from '@/components/FuzzyOverlay';
-import Footer from '@/components/Footer';
-
+import ContractMePage from '@/components/Contract';
+import Footer from '@/components/Footer/Footer';
+import Menu from '@/components/Menu/Menu';
 const fadeInVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -23,7 +22,6 @@ const buttonVariants = {
 };
 
 const Section = ({ children, id, className}: { children: React.ReactNode; id: string ; className?: string}) => {
-  // Using useInView hook with triggerOnce to ensure animation plays only once
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
@@ -49,7 +47,6 @@ const Page: React.FC = () => {
       const homeSection = document.getElementById('home');
       const homeSectionHeight = homeSection?.offsetHeight || 0;
 
-      // Show menu button only when scrolled past the home section
       if (window.scrollY > homeSectionHeight) {
         setShowMenuButton(true);
       } else {
@@ -68,47 +65,47 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="relative">
-      <>
-        {showMenuButton && (
-          <motion.button
-            className="
-              group pointer-events-auto flex aspect-square size-16 flex-col items-center justify-center rounded-full bg-accent-500 transition-all duration-800 ease-expo sm:hover:scale-90 scale-100 top-4 right-4 fixed z-[9998] bg-[#E3E3DE]"
-            onClick={toggleMenu}
-            initial="hidden"
-            animate="visible"
-            variants={buttonVariants}
-          >
-            <span
-              className="ease-in-out-circ absolute h-[2px] w-7 rounded-full bg-black transition-all duration-300 2xl:w-9"
-            ></span>
-            <span
-              className="ease-in-out-circ absolute h-[2px] w-7 rounded-full bg-black transition-all duration-300 2xl:w-9 translate-y-2"
-            ></span>
-          </motion.button>
-        )}
-        <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        <Section id="home" className='min-h-screen '>
-          <HomePage />
-        </Section>
-        <Section id="about" className='min-h-screen '>
-          <AboutMe />
-        </Section>
-        <Section id="works" className=' space-y-20 bg-black min-h-screen '>
-          <HoverImageLinks />
-          <ClipPathLinksComponent />
-        </Section>
-        <Section id="contact" className='min-h-screen '>
-          <ContractMePage />
-        </Section>
-        <Section id="link" className='bg-black min-h-screen '>
-          <RevealLinks />
-        </Section>
-        <Section id="link" className='bg-black min-h-[40vh] justify-center flex items-center container'>
-          <Footer />
-        </Section>
-      </>
-    </div>
+      <div className="relative">
+        <>
+          {showMenuButton && (
+            <motion.button
+              className="
+                group pointer-events-auto flex aspect-square size-16 flex-col items-center justify-center rounded-full bg-accent-500 transition-all duration-800 ease-expo sm:hover:scale-90 scale-100 top-4 right-4 fixed z-[9998] bg-[#E3E3DE]"
+              onClick={toggleMenu}
+              initial="hidden"
+              animate="visible"
+              variants={buttonVariants}
+            >
+              <span
+                className="ease-in-out-circ absolute h-[2px] w-7 rounded-full bg-black transition-all duration-300 2xl:w-9"
+              ></span>
+              <span
+                className="ease-in-out-circ absolute h-[2px] w-7 rounded-full bg-black transition-all duration-300 2xl:w-9 translate-y-2"
+              ></span>
+            </motion.button>
+          )}
+          <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+          <Section id="home" className='min-h-screen '>
+            <HomePage />
+          </Section>
+          <Section id="about" className='min-h-screen '>
+            <AboutMe />
+          </Section>
+          <Section id="works" className='space-y-20 bg-black min-h-screen '>
+            <HoverImageLinks />
+            <ClipPathLinksComponent />
+          </Section>
+          <Section id="contact" className='min-h-screen '>
+            <ContractMePage />
+          </Section>
+          <Section id="link" className='bg-black min-h-screen '>
+            <RevealLinks />
+          </Section>
+          <Section id="link" className='bg-black min-h-[40vh] justify-center flex items-center'>
+            <Footer />
+          </Section>
+        </>
+      </div>
   );
 };
 

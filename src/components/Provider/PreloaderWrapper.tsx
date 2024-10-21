@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import PreLoader from '@/components/Preloader';
+import PreLoader from '@/components/Provider/Preloader';
 
 const PreloaderWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isPreloaderDone, setIsPreloaderDone] = useState(false);

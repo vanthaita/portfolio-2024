@@ -45,7 +45,7 @@ export default function Footer() {
       <div className="flex flex-col gap-y-12 gap-x-2 md:flex-row items-start justify-between pt-6 pb-10 text-text">
         <div className="gap-y-4 b-8 flex flex-col text-base xl:text-h6 2xl:text-h5">
           <div className="flex w-56 gap-x-1 xl:w-96">
-          <span className="flex flex-col text-heading-3 font-bold leading-tight tracking-heading text-secondary-300 sm:order-first sm:text-heading-2 md:col-span-6"><span>© 2024 <br className="block lg:hidden"/> Ta Thai</span><span>All rights reserved.</span></span>
+          <span className="flex flex-col text-heading-3 font-bold leading-tight tracking-heading text-secondary-300 sm:order-first sm:text-heading-2 md:col-span-6"><span>© 2024 <br className="block lg:hidden"/>Ta Thai</span><span>All rights reserved.</span></span>
           </div>
           <Link
             className="flex items-start justify-start"

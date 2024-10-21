@@ -86,7 +86,7 @@ export const ScreenFitText = () => {
           strokeLinecap="round"
           strokeLinejoin="round"
           className="m-0 size-4 p-0 md:size-8 mb-4"
-          color="#8C8C73"
+          color="#B7B7B7"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
