@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import PreloaderWrapper from '@/components/Provider/PreloaderWrapper';
 import SlideInNotifications from '@/components/Notification';
+import { Analytics } from "@vercel/analytics/react"
 const geistSans = localFont({
   src: './fonts/Montreal Medium.otf',
   variable: '--font-geist-sans',
@@ -29,6 +30,7 @@ export default function RootLayout({
           <main>{children}</main>
           <SlideInNotifications />
         </PreloaderWrapper>
+        <Analytics/>
       </body>
     </html>
   );
