@@ -40,8 +40,8 @@ export const RevealLinks = () => {
     <>
       <section ref={sectionRef} className="grid place-content-center gap-4 px-8 py-24 bg-black text-white">
         <FlipLink href="#">Twitter</FlipLink>
-        <FlipLink href="#">LinkedIn</FlipLink>
-        <FlipLink href="#">Facebook</FlipLink>
+        <FlipLink href="https://www.linkedin.com/in/vanthaita/">LinkedIn</FlipLink>
+        <FlipLink href="https://www.facebook.com/profile.php?id=100091835059957">Facebook</FlipLink>
         <FlipLink href="#">Instagram</FlipLink>
       </section>
       <Marquee />

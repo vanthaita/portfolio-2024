@@ -2,7 +2,11 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import HireMe from '../HireMe';
 import Link from 'next/link';
-
+const links = [
+  { name: 'LINKEDIN', href: 'https://www.linkedin.com/in/vanthaita/' },
+  { name: 'GITHUB', href: 'https://github.com/vanthaita/' },
+  { name: 'INSTAGRAM', href: 'https://instagram.com' }
+];
 interface MenuProps {
   isOpen: boolean;
   toggleMenu: () => void;
@@ -80,17 +84,21 @@ const Menu: React.FC<MenuProps> = ({ isOpen, toggleMenu }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
           >
-            {/* <p className="text-white">thaitv225@gmail.com</p> */}
             <div className="flex flex-row items-start gap-x-4 mt-4">
-              <Link href="https://linkedin.com" className="hover:text-gray-400 transition-all border rounded-full px-4 py-3 cursor-pointer">
-                LINKEDIN
-              </Link>
-              <Link href="https://youtube.com" className="hover:text-gray-400 transition-all border rounded-full px-4 py-3 cursor-pointer">
-                GITHUB
-              </Link>
-              <Link href="https://instagram.com" className="hover:text-gray-400 transition-all border rounded-full px-4 py-3 cursor-pointer">
-                INSTAGRAM
-              </Link>
+              {links.map((link) => (
+                <Link
+                  key={link.name}
+                  className="font-bold relative overflow-y-hidden group h-fit border"
+                  href={link.href} 
+                >
+                  <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-500 px-3 py-4">
+                    {link.name} 
+                  </span>
+                  <span className="absolute inset-0 group-hover:translate-y-0 translate-y-5 xl:translate-y-8 transition-all ease-in-out-circ duration-500 underline flex-nowrap whitespace-nowrap px-3 py-4">
+                    {link.name}
+                  </span>
+                </Link>
+              ))}
             </div>
             <HireMe />
           </motion.div>

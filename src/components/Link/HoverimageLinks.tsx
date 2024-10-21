@@ -40,7 +40,7 @@ export const HoverImageLinks: React.FC = () => {
     );
 
     return () => {
-      triggerAnimation.kill(); // Cleanup animation on unmount
+      triggerAnimation.kill();
     };
   }, []);
 
@@ -54,21 +54,21 @@ export const HoverImageLinks: React.FC = () => {
       <div ref={linksRef} className="mx-auto max-w-7xl space-y-10">
         <Link
           heading="Mogi"
-          subheading="Mock AI interview"
+          subheading="AI-Powered Interview Simulation"
           imgSrc="/mogi.png"
-          href="#"
+          href="https://mogi-three.vercel.app/"
         />
         <Link
           heading="Burogu"
-          subheading="Multi user blog"
+          subheading="Collaborative Blogging Platform"
           imgSrc="/burogu.png"
-          href="#"
+          href="https://burogu-fontend.vercel.app/"
         />
         <Link
           heading="Notto"
-          subheading="Note"
+          subheading="Organize Your Thoughts"
           imgSrc="/notto.png"
-          href="#"
+          href="https://notto-omega.vercel.app/"
         />
       </div>
     </section>
@@ -162,6 +162,7 @@ const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
         className="absolute z-0 h-32 w-48 rounded-lg object-cover md:h-48 md:w-64 shadow-lg transition-shadow duration-500 group-hover:shadow-2xl"
         alt={`Image representing a project: ${heading}`}
       />
+      
 
       <motion.div
         variants={{

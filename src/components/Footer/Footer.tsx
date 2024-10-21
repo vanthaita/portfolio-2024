@@ -6,22 +6,22 @@ export default function Footer() {
   const links = [
     {
       id: 1,
-      href: "/about",
+      href: "#about",
       label: "About Me",
     },
     {
       id: 2,
-      href: "/projects",
+      href: "#works",
       label: "Projects",
     },
     {
       id: 3,
-      href: "/contact",
+      href: "#contact",
       label: "Contact",
     },
     {
       id: 4,
-      href: "/resume",
+      href: "/",
       label: "Resume",
     },
     {
@@ -31,7 +31,7 @@ export default function Footer() {
     },
     {
       id: 6,
-      href: "/legal",
+      href: "/",
       label: "Legal",
     },
   ];
@@ -52,14 +52,6 @@ export default function Footer() {
             href="https://www.producthunt.com/posts/pillarstack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pillarstack"
             target="_blank"
           >
-            {/* Uncomment if you want to add a Product Hunt badge
-            <Image
-              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=427808&theme=dark"
-              alt="Portfolio - My work and projects | Product Hunt"
-              style={{width: "250px", height: "54px"}}
-              width="200"
-              height="54"
-            /> */}
           </Link>
         </div>
         <ul className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid xl:grid-cols-3 gap-x-8 gap-y-3">

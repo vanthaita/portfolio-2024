@@ -5,10 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const words = [
   "Chào buổi sáng, bắt đầu hành trình mới!",
   "おはようございます、今日も一緒に頑張りましょう！",
-  "Good morning, let's start something amazing!",
-  "Học hôm nay, thành công ngày mai!",
-  "学びは未来への鍵です。",
-  "Knowledge is the key to your future!"
+  "Good morning, amazinglet's start something !",
 ];
 
 const preloaderVariants = {
