@@ -1,7 +1,6 @@
 'use client';
 
 import HomePage from '@/components/HomePage';
-import Contact from '@/components/Contact';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -10,6 +9,7 @@ import Menu from '@/components/Menu';
 import { ClipPathLinksComponent } from '@/components/ClipPathLinks';
 import { HoverImageLinks } from '@/components/HoverimageLinks';
 import AboutMe from '@/components/About';
+import ContractMePage from '@/components/FuzzyOverlay';
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -21,18 +21,18 @@ const buttonVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeInOut' } },
 };
 
-const Section = ({ children, id }: { children: React.ReactNode; id: string }) => {
+const Section = ({ children, id, className}: { children: React.ReactNode; id: string ; className?: string}) => {
   // Using useInView hook with triggerOnce to ensure animation plays only once
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
     <motion.div
       id={id}
-      ref={ref}  // Assign the ref to the div
-      initial="hidden"  // Start in hidden state
-      animate={inView ? "visible" : "hidden"}  // Animate when in view
-      variants={fadeInVariants}  // Apply fadeInVariants for smooth transitions
-      className="min-h-screen"  // Ensure the section has enough height for scroll effect
+      ref={ref}
+      initial="hidden"  
+      animate={inView ? "visible" : "hidden"}
+      variants={fadeInVariants}
+      className={`min-h-screen ${className}`} 
     >
       {children}
     </motion.div>
@@ -87,30 +87,20 @@ const Page: React.FC = () => {
           </motion.button>
         )}
         <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
-
-        {/* Home Section */}
         <Section id="home">
           <HomePage />
         </Section>
-
-        {/* About Me Section */}
         <Section id="about">
           <AboutMe />
         </Section>
-
-        {/* Works Section */}
-        <Section id="works">
+        <Section id="works" className=' space-y-20 bg-black'>
           <HoverImageLinks />
           <ClipPathLinksComponent />
         </Section>
-
-        {/* Contact Section */}
         <Section id="contact">
-          <Contact />
+          <ContractMePage />
         </Section>
-
-        {/* Reveal Links Section */}
-        <Section id="link">
+        <Section id="link" className='bg-black'>
           <RevealLinks />
         </Section>
       </>

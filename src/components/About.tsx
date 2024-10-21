@@ -1,62 +1,82 @@
-'use client'
+'use client';
 import React, { useEffect, useRef } from 'react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutMe: React.FC = () => {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
-  const pageRef = useRef<HTMLDivElement | null>(null);
-  
+
   const isInViewAbout = useInView(aboutRef, { once: true, amount: 0.3 });
   const isInViewText = useInView(textRef, { once: true, amount: 0.2 });
-  
-  const { scrollYProgress } = useScroll();
-  
-  // Smoother y-axis movement with easing
-  const y = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  
-  // Fixed opacity for reverse on scroll back
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+
+  // Staggered animation for appearing text
+  const staggeredTextVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delayChildren: 0.2,
+        staggerChildren: 0.15,
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
   };
-  
-  const textVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { delay: 0.3, duration: 0.6, ease: 'easeOut' } },
+
+  const textItemVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
   };
-  
-  const textScrollVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { delay: 0.5, duration: 0.6, ease: 'easeOut' } },
-  };
-  
-  // GSAP-based parallax scroll effect
+
+  // GSAP-based scroll-triggered animations
   useEffect(() => {
-    const handleScroll = () => {
-      if (pageRef.current) {
-        gsap.to(pageRef.current, {
-          y: -window.scrollY * 0.5,  // Adjusted factor for smoother effect
-          ease: 'power1.out',
-        });
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    if (aboutRef.current && textRef.current) {
+      gsap.fromTo(
+        aboutRef.current,
+        { y: 50 },
+        {
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: aboutRef.current,
+            start: 'top 80%',
+            end: 'bottom 30%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+
+      gsap.fromTo(
+        textRef.current,
+        { y: 50 },
+        {
+          y: 0,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: 'top 75%',
+            end: 'bottom 35%',
+            toggleActions: 'play none none reverse',
+          },
+        }
+      );
+    }
   }, []);
-  
+
   return (
     <motion.div
       ref={aboutRef}
-      className="min-h-screen flex flex-col justify-center items-center bg-black px-4 relative"
+      className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-black via-gray-900 to-black px-4 relative"
       initial="hidden"
       animate={isInViewAbout ? 'visible' : 'hidden'}
-      variants={containerVariants}
+      variants={staggeredTextVariants}
     >
       <div className="absolute top-4 left-4 mt-8 flex flex-col justify-between w-1/2 h-full">
         <motion.svg
@@ -71,18 +91,14 @@ const AboutMe: React.FC = () => {
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
-          variants={textVariants}
+          variants={textItemVariants}
         >
           <line x1="7" y1="7" x2="17" y2="17"></line>
           <polyline points="17 7 17 17 7 17"></polyline>
         </motion.svg>
-        
-        <motion.div
-          className="w-auto mb-14"
-          variants={textVariants}
-          style={{ y, opacity }}
-        >
-          <span className="text-white text-4xl whitespace-pre-wrap tracking-wide">
+
+        <motion.div className="w-auto mb-20" variants={staggeredTextVariants}>
+          <span className="text-white text-4xl whitespace-pre-wrap tracking-wide opacity-70">
             Passionate developer and entrepreneur leveraging technology for innovative solutions. Strong background in software development. Committed to continuous learning and collaboration for positive change.
           </span>
         </motion.div>
@@ -90,21 +106,19 @@ const AboutMe: React.FC = () => {
 
       <motion.div
         ref={textRef}
-        className="absolute top-4 right-4 p-4 rounded-lg shadow-lg"
+        className="absolute top-4 right-4 p-4 rounded-lg shadow-lg opacity-70"
         initial="hidden"
         animate={isInViewText ? 'visible' : 'hidden'}
-        variants={textScrollVariants}
-        style={{ y, opacity }}
       >
-        <ul className="text-9xl font-bold text-white whitespace-pre-wrap">
-          DEVELOPER,
-        </ul>
-        <ul className="text-9xl font-bold text-white whitespace-pre-wrap">
-          BUSINESS,
-        </ul>
-        <ul className="text-9xl font-bold text-white whitespace-pre-wrap">
+        <motion.ul className="text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
+          DEVELOPER
+        </motion.ul>
+        <motion.ul className="text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
+          BUSINESS
+        </motion.ul>
+        <motion.ul className="text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
           TO LIVE
-        </ul>
+        </motion.ul>
       </motion.div>
     </motion.div>
   );

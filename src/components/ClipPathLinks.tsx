@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   SiNextdotjs,
   SiNestjs,
@@ -7,12 +7,15 @@ import {
   SiPrisma,
   SiTailwindcss,
   SiMongodb,
-  SiSupabase,
   SiTypescript,
   SiExpo 
 } from "react-icons/si";
 import { motion, useAnimate } from "framer-motion";
-import { FaDocker } from "react-icons/fa6";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export const ClipPathLinksComponent: React.FC = () => {
   return (
     <div className="bg-black p-4 md:p-8">
@@ -29,26 +32,74 @@ export const ClipPathLinksComponent: React.FC = () => {
 };
 
 const ClipPathLinks: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top center",
+        end: "bottom center",
+        toggleActions: "play none none reverse",
+        // Adjust the animation when scrolling up or down
+        onEnter: () => {
+          gsap.to(containerRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+          });
+        },
+        onLeave: () => {
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+          });
+        },
+        onEnterBack: () => {
+          gsap.to(containerRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+          });
+        },
+        onLeaveBack: () => {
+          gsap.to(containerRef.current, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+          });
+        },
+      },
+    });
+
+    // Initial state for the element
+    gsap.set(containerRef.current, { opacity: 0, y: 50 });
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <div className="divide-y divide-neutral-900 border border-neutral-900">
-    <div className="grid grid-cols-2 divide-x divide-neutral-900">
-      <LinkBox Icon={SiNextdotjs} href="#" />
-      <LinkBox Icon={SiNestjs} href="#" />
+    <div className="divide-y divide-neutral-900 border border-neutral-900" ref={containerRef}>
+      <div className="grid grid-cols-2 divide-x divide-neutral-900">
+        <LinkBox Icon={SiNextdotjs} href="#" />
+        <LinkBox Icon={SiNestjs} href="#" />
+      </div>
+      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+        <LinkBox Icon={SiNodedotjs} href="#" />
+        <LinkBox Icon={SiReact} href="#" />
+        <LinkBox Icon={SiPrisma} href="#" />
+        <LinkBox Icon={SiTailwindcss} href="#" />
+      </div>
+      <div className="grid grid-cols-3 divide-x divide-neutral-900">
+        <LinkBox Icon={SiMongodb} href="#" />
+        <LinkBox Icon={SiExpo} href="#" />
+        <LinkBox Icon={SiTypescript} href="#" />
+        {/* <LinkBox Icon={FaDocker} href="#" /> */}
+      </div>
     </div>
-    <div className="grid grid-cols-4 divide-x divide-neutral-900">
-      <LinkBox Icon={SiNodedotjs} href="#" />
-      <LinkBox Icon={SiReact} href="#" />
-      <LinkBox Icon={SiPrisma} href="#" />
-      <LinkBox Icon={SiTailwindcss} href="#" />
-    </div>
-    <div className="grid grid-cols-3 divide-x divide-neutral-900">
-      <LinkBox Icon={SiMongodb} href="#" />
-      <LinkBox Icon={SiExpo} href="#" />
-      <LinkBox Icon={SiTypescript} href="#" />
-      {/* <LinkBox Icon={FaDocker} href="#" /> */}
-      {/* You can add more tech icons here if needed */}
-    </div>
-  </div>
   );
 };
 

@@ -1,6 +1,8 @@
 import { useMotionValue, motion, useSpring, useTransform } from "framer-motion";
-import React, { useRef, MouseEvent } from "react";
+import React, { useRef, MouseEvent, useEffect } from "react";
 import { FiArrowRight } from "react-icons/fi";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 interface LinkProps {
   heading: string;
@@ -10,14 +12,46 @@ interface LinkProps {
 }
 
 export const HoverImageLinks: React.FC = () => {
+  const linksRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const links = gsap.utils.toArray<HTMLAnchorElement>('.link');
+    
+    const triggerAnimation = gsap.fromTo(
+      links,
+      { autoAlpha: 0, y: 50, scale: 0.5 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.2,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: linksRef.current,
+          start: "top 75%",
+          end: "bottom 25%",
+          scrub: true,
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+
+    return () => {
+      triggerAnimation.kill(); // Cleanup animation on unmount
+    };
+  }, []);
+
   return (
     <section className="bg-black p-4 md:p-8"> 
       <motion.h1 
-        className="text-5xl font-extrabold text-transparent bg-clip-text bg-[#E3E3DE]  uppercase tracking-widest shadow-lg mb-8 transition-transform duration-500 hover:scale-105"
+        className="text-5xl font-extrabold text-transparent bg-clip-text bg-[#E3E3DE] uppercase tracking-widest shadow-lg mb-8 transition-transform duration-500 hover:scale-105"
       >
         Projects
       </motion.h1>
-      <div className="mx-auto max-w-7xl ">
+      <div ref={linksRef} className="mx-auto max-w-7xl space-y-10">
         <Link
           heading="Mogi"
           subheading="Mock AI interview"
@@ -40,7 +74,6 @@ export const HoverImageLinks: React.FC = () => {
     </section>
   );
 };
-
 const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
   const ref = useRef<HTMLAnchorElement | null>(null);
 
@@ -56,7 +89,6 @@ const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
   const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
     if (ref.current) {
       const rect = ref.current.getBoundingClientRect();
-
       const width = rect.width;
       const height = rect.height;
 
@@ -78,16 +110,18 @@ const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
       onMouseMove={handleMouseMove}
       initial="initial"
       whileHover="whileHover"
-      className="group relative flex items-center justify-between border-b-2 border-neutral-700 py-6 transition-colors duration-500 hover:border-neutral-50 md:py-10 w-full"
+      className="link group relative flex items-center justify-between border-b-2 border-neutral-700 py-6 transition-colors duration-500 hover:border-neutral-50 md:py-10 w-full hover:bg-neutral-800"
     >
       <div>
         <motion.span
           variants={{
             initial: { x: 0 },
-            whileHover: { x: -16 },
+            whileHover: { x: -16, scale: 1.05 },
           }}
           transition={{
             type: "spring",
+            stiffness: 300,
+            damping: 15,
             staggerChildren: 0.075,
             delayChildren: 0.25,
           }}
@@ -97,9 +131,9 @@ const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
             <motion.span
               variants={{
                 initial: { x: 0 },
-                whileHover: { x: 16 },
+                whileHover: { x: 16, scale: 1.1 },
               }}
-              transition={{ type: "spring" }}
+              transition={{ type: "spring", stiffness: 200 }}
               className="inline-block"
               key={i}
             >
@@ -121,11 +155,11 @@ const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
         }}
         variants={{
           initial: { scale: 0, rotate: "-12.5deg" },
-          whileHover: { scale: 1, rotate: "12.5deg" },
+          whileHover: { scale: 1.1, rotate: "12.5deg" },
         }}
-        transition={{ type: "spring" }}
+        transition={{ type: "spring", stiffness: 300, damping: 15 }}
         src={imgSrc}
-        className="absolute z-0 h-32 w-48 rounded-lg object-cover md:h-48 md:w-64"
+        className="absolute z-0 h-32 w-48 rounded-lg object-cover md:h-48 md:w-64 shadow-lg transition-shadow duration-500 group-hover:shadow-2xl"
         alt={`Image representing a project: ${heading}`}
       />
 
@@ -143,7 +177,7 @@ const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, href }) => {
         transition={{ type: "spring" }}
         className="relative z-10 p-4"
       >
-        <FiArrowRight className="text-5xl text-neutral-50" />
+        <FiArrowRight className="text-5xl text-neutral-50 transition-transform duration-500 group-hover:translate-x-2" />
       </motion.div>
     </motion.a>
   );

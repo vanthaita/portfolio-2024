@@ -2,18 +2,21 @@
 'use client'
 import React from "react";
 import { motion } from "framer-motion";
+import { Marquee } from "./Marquee";
 
 export const RevealLinks = () => {
   return (
-    <section className="grid place-content-center gap-2 px-8 py-24 text-black">
+    <>
+    <section className="grid place-content-center gap-2 px-8 py-24 text-white bg-black">
       <FlipLink href="#">Twitter</FlipLink>
       <FlipLink href="#">Linkedin</FlipLink>
       <FlipLink href="#">Facebook</FlipLink>
       <FlipLink href="#">Instagram</FlipLink>
     </section>
+    <Marquee />
+    </>
   );
 };
-
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
