@@ -10,6 +10,7 @@ import { ClipPathLinksComponent } from '@/components/ClipPathLinks';
 import { HoverImageLinks } from '@/components/HoverimageLinks';
 import AboutMe from '@/components/About';
 import ContractMePage from '@/components/FuzzyOverlay';
+import Footer from '@/components/Footer';
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -32,7 +33,7 @@ const Section = ({ children, id, className}: { children: React.ReactNode; id: st
       initial="hidden"  
       animate={inView ? "visible" : "hidden"}
       variants={fadeInVariants}
-      className={`min-h-screen ${className}`} 
+      className={`${className}`} 
     >
       {children}
     </motion.div>
@@ -87,21 +88,24 @@ const Page: React.FC = () => {
           </motion.button>
         )}
         <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        <Section id="home">
+        <Section id="home" className='min-h-screen '>
           <HomePage />
         </Section>
-        <Section id="about">
+        <Section id="about" className='min-h-screen '>
           <AboutMe />
         </Section>
-        <Section id="works" className=' space-y-20 bg-black'>
+        <Section id="works" className=' space-y-20 bg-black min-h-screen '>
           <HoverImageLinks />
           <ClipPathLinksComponent />
         </Section>
-        <Section id="contact">
+        <Section id="contact" className='min-h-screen '>
           <ContractMePage />
         </Section>
-        <Section id="link" className='bg-black'>
+        <Section id="link" className='bg-black min-h-screen '>
           <RevealLinks />
+        </Section>
+        <Section id="link" className='bg-black min-h-[40vh] justify-center flex items-center container'>
+          <Footer />
         </Section>
       </>
     </div>

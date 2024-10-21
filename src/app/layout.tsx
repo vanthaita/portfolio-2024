@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Provider>
-        <body className={`${geistSans.variable} bg-[#B1B1B1] antialiased mx-auto`}>
+        <body className={`${geistSans.variable} bg-black antialiased mx-auto`}>
           <PreloaderWrapper>
             <div className="navbar-container">
               <Navbar />

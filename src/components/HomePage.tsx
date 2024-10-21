@@ -45,12 +45,12 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative h-[90vh] px-4 mb-8"> 
+    <div className="relative h-[90vh] px-4 mb-8 bg-black"> 
       <div ref={pageRef} className="flex flex-col items-center h-full relative">
         <div className="container flex justify-center ms:items-center ms:flex-col-reverse">
           <ScreenFitText />
-          <svg ref={svgRef} width="1382.4" height="179.2" viewBox="0 0 1382.4 179.2" xmlns="http://www.w3.org/2000/svg">
-          <g id="svgGroup" strokeLinecap="round" fillRule="nonzero" fontSize="9pt" stroke="#000" strokeWidth="0.25mm" fill="#131311">
+          <svg ref={svgRef} width="1382.4" height="179.2" viewBox="0 0 1382.4 179.2" xmlns="http://www.w3.org/2000/svg" className='mt-12'>
+            <g id="svgGroup" strokeLinecap="round" fillRule="nonzero" fontSize="9pt" stroke="#000" strokeWidth="0.25mm" fill="#B7B7B7">
               <path d="M 67.84 179.2 L 67.84 28.672 L 0 28.672 L 0 0 L 167.68 0 L 167.68 28.672 L 99.84 28.672 L 99.84 179.2 L 67.84 179.2 Z" id="0"/>
               <path d="M 322.816 179.2 L 286.208 179.2 L 269.056 143.36 L 198.912 143.36 L 182.016 179.2 L 144.64 179.2 L 233.984 0 L 322.816 179.2 Z M 212.224 114.688 L 255.232 114.688 L 233.472 69.632 L 212.224 114.688 Z" id="1"/>
               <path d="M 286.464 0 L 323.584 0 L 375.808 109.824 L 427.776 0 L 464.384 0 L 375.552 179.2 L 286.464 0 Z" id="2"/>
@@ -68,4 +68,5 @@ const HomePage: React.FC = () => {
     </div>
   );
 };
+
 export default HomePage;

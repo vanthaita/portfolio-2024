@@ -73,7 +73,7 @@ const AboutMe: React.FC = () => {
   return (
     <motion.div
       ref={aboutRef}
-      className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-black via-gray-900 to-black px-4 relative"
+      className="min-h-screen flex flex-col justify-center items-center bg-black px-4 relative"
       initial="hidden"
       animate={isInViewAbout ? 'visible' : 'hidden'}
       variants={staggeredTextVariants}
