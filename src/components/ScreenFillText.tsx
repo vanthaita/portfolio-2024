@@ -71,11 +71,11 @@ export const ScreenFitText = () => {
 
   return (
     <div
-      className="flex h-2/3 absolute bottom-0 w-2/3 left-0 items-center overflow-hidden"
+      className="flex h-2/3 absolute md:bottom-0 items-start mt-10 md:w-2/3 w-full left-0 md:items-center overflow-hidden"
       ref={containerRef}
     >
       <span
-        className="text-5xl font-bold text-gray-400 leading-none md:mb-20 absolute bottom-4 left-0"
+        className="md:text-5xl text-3xl font-bold text-gray-400 leading-none md:mb-20 absolute bottom-4 left-0"
         style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}
       >
         <svg
@@ -97,7 +97,8 @@ export const ScreenFitText = () => {
         I craft modern web and mobile applications, leveraging cutting-edge technologies like Next.js, Expo, and PostgreSQL to bring your ideas to life.
       </span>
       <span
-        className="absolute -bottom-4 left-0 mx-auto whitespace-nowrap text-center font-bold uppercase text-[#555555]"
+        className="md:absolute md:-bottom-4 md:left-0 mx-auto whitespace-nowrap md:text-center font-bold uppercase md:text-[#555555]
+        text-gray-300"
         ref={textRef}
       >
         Available for work

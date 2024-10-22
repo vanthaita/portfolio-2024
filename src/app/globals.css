@@ -103,3 +103,14 @@ section {
 .hoverText:has(+ .hoverText + .hoverText:hover) {
   font-weight: 300;
 }
+.footer-title {
+  max-width: 100%; /* Ensure the SVG doesn't exceed the container's width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+@media (max-width: 640px) {
+  .footer-title {
+    width: 100%; /* Full width on mobile */
+    height: auto;
+  }
+}

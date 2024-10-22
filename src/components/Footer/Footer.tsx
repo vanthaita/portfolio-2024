@@ -37,22 +37,16 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="mb-16 sm:mb-0 bg-black text-white pt-10">
-      <div className="border-b border-b-dim-gray pb-6">
+    <footer className="mb-16 sm:mb-0 text-white pt-10 max-w-[91%] w-full mx-auto">
+      <div className="border-b border-b-gray-400 pb-6 w-full">
         <span className="sr-only">Portfolio Footer</span>
         <FooterTitle />
       </div>
-      <div className="flex flex-col gap-y-12 gap-x-2 md:flex-row items-start justify-between pt-6 pb-10 text-text">
+      <div className="flex flex-row gap-y-12 gap-x-2  items-start justify-between pt-6 pb-10 text-text">
         <div className="gap-y-4 b-8 flex flex-col text-base xl:text-h6 2xl:text-h5">
           <div className="flex w-56 gap-x-1 xl:w-96">
           <span className="flex flex-col text-heading-3 font-bold leading-tight tracking-heading text-secondary-300 sm:order-first sm:text-heading-2 md:col-span-6"><span>© 2024 <br className="block lg:hidden"/>Ta Thai</span><span>All rights reserved.</span></span>
           </div>
-          <Link
-            className="flex items-start justify-start"
-            href="https://www.producthunt.com/posts/pillarstack?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-pillarstack"
-            target="_blank"
-          >
-          </Link>
         </div>
         <ul className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid xl:grid-cols-3 gap-x-8 gap-y-3">
           {links.map((link) => (
@@ -71,3 +65,4 @@ export default function Footer() {
     </footer>
   );
 }
+  

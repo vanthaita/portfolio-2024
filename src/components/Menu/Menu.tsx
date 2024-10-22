@@ -43,7 +43,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, toggleMenu }) => {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed top-0 right-0 h-full bg-[#0D0D0D] text-white z-[9999] flex flex-col p-8 sm:w-full md:w-1/2 shadow-xl"
+          className="fixed top-0 right-0 h-full bg-[#0D0D0D] text-white z-[9999] flex flex-col p-8 w-full md:w-1/2 shadow-xl"
           initial="hidden"
           animate="visible"
           exit="hidden"
@@ -58,7 +58,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen, toggleMenu }) => {
             ✕
           </motion.button>
           <motion.nav
-            className=" font-bold text-8xl mt-8 flex flex-col tracking-wide leading-none space-y-[-0.2rem]"
+            className=" font-bold md:text-8xl text-7xl mt-8 flex flex-col tracking-wide leading-none space-y-[-0.2rem]"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
@@ -88,13 +88,13 @@ const Menu: React.FC<MenuProps> = ({ isOpen, toggleMenu }) => {
               {links.map((link) => (
                 <Link
                   key={link.name}
-                  className="font-bold relative overflow-y-hidden group h-fit border"
+                  className="font-bold relative overflow-y-hidden group h-fit border z-40"
                   href={link.href} 
                 >
                   <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-500 px-3 py-4">
                     {link.name} 
                   </span>
-                  <span className="absolute inset-0 group-hover:translate-y-0 translate-y-5 xl:translate-y-8 transition-all ease-in-out-circ duration-500 underline flex-nowrap whitespace-nowrap px-3 py-4">
+                  <span className="absolute inset-0 group-hover:translate-y-0  translate-y-5 xl:translate-y-8 transition-all ease-in-out-circ duration-500 underline flex-nowrap whitespace-nowrap px-3 py-4">
                     {link.name}
                   </span>
                 </Link>

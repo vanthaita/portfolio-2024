@@ -105,7 +105,7 @@ const Page: React.FC = () => {
         <Section id="home" className='min-h-screen'>
           <HomePage />
         </Section>
-        <Section id="about" className='min-h-screen'>
+         <Section id="about" className='min-h-screen'>
           <AboutMe />
         </Section>
         <Section id="works" className='space-y-20 bg-black min-h-screen'>
@@ -118,7 +118,7 @@ const Page: React.FC = () => {
         <Section id="link" className='bg-black min-h-screen'>
           <RevealLinks />
         </Section>
-        <Section id="footer" className='bg-black min-h-[40vh] justify-center flex items-center'>
+        <Section id="footer" className='bg-black md:min-h-[40vh] lg:md:min-h-[40vh] min-h-[30vh] justify-center flex items-center'>
           <Footer />
         </Section>
       </>

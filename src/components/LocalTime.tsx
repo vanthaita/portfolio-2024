@@ -37,15 +37,15 @@ const LocalTime = () => {
 
   return (
     <div className="end-1 col-span-8 flex w-auto flex-col md:items-end md:justify-end md:col-span-4 md:right-0 md:top-1/3 absolute
-    -bottom-4 justify-end items-end mb-[5.25px] md:mb-4 p-4">
+    -bottom-4 justify-end items-end  md:mb-4 p-4">
       <div className="overflow-clip">
-        <span className="block max-w-[15ch] text-right font-mono md:text-xl font-medium uppercase leading-snug text-white md:max-w-max 3xl:text-base text-base">
+        <span className="block max-w-[15ch] text-right font-mono md:text-xl font-medium uppercase leading-snug text-gray-300 md:max-w-max 3xl:text-base text-base">
           Local time
         </span>
       </div>
       <div className="overflow-clip">
         <motion.span
-          className="block text-heading-2 font-semibold uppercase leading-none tracking-heading text-white sm:text-heading-1 3xl:text-heading-1 text-2xl"
+          className="block text-heading-2 font-semibold uppercase leading-none tracking-heading text-gray-400 sm:text-heading-1 3xl:text-heading-1 text-2xl"
           initial="hidden"
           animate={hasLoaded ? 'visible' : 'hidden'}
           variants={timeVariants}

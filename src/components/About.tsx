@@ -71,12 +71,12 @@ const AboutMe: React.FC = () => {
   return (
     <motion.div
       ref={aboutRef}
-      className="min-h-screen flex flex-col justify-center items-center px-4 relative"
+      className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 lg:px-12 relative"
       initial="hidden"
       animate={isInViewAbout ? 'visible' : 'hidden'}
       variants={staggeredTextVariants}
     >
-      <div className="absolute top-4 left-4 mt-8 flex flex-col justify-between w-1/2 h-full">
+      <div className="absolute top-4 left-4 mt-8 flex flex-col justify-between w-full sm:w-1/2 h-full">
         <motion.svg
           stroke="currentColor"
           fill="none"
@@ -84,7 +84,7 @@ const AboutMe: React.FC = () => {
           viewBox="6 6 12 12"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="m-0 size-8 p-0 md:size-16"
+          className="m-0 size-8 p-0 sm:w-12 md:w-16"
           color="#B7B7B7"
           height="1em"
           width="1em"
@@ -96,7 +96,7 @@ const AboutMe: React.FC = () => {
         </motion.svg>
 
         <motion.div className="w-auto mb-20" variants={staggeredTextVariants}>
-          <span className="text-white text-4xl whitespace-pre-wrap tracking-wide opacity-70">
+          <span className="text-white text-lg sm:text-2xl lg:text-4xl whitespace-pre-wrap tracking-wide opacity-70">
             Passionate developer and entrepreneur leveraging technology for innovative solutions. Strong background in software development. Committed to continuous learning and collaboration for positive change.
           </span>
         </motion.div>
@@ -108,13 +108,13 @@ const AboutMe: React.FC = () => {
         initial="hidden"
         animate={isInViewText ? 'visible' : 'hidden'}
       >
-        <motion.ul className="text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
+        <motion.ul className="text-4xl sm:text-6xl lg:text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
           DEVELOPER
         </motion.ul>
-        <motion.ul className="text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
+        <motion.ul className="text-4xl sm:text-6xl lg:text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
           BUSINESS
         </motion.ul>
-        <motion.ul className="text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
+        <motion.ul className="text-4xl sm:text-6xl lg:text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
           TO LIVE
         </motion.ul>
       </motion.div>
