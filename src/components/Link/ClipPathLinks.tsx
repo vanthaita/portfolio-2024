@@ -8,7 +8,14 @@ import {
   SiTailwindcss,
   SiMongodb,
   SiTypescript,
-  SiExpo 
+  SiExpo,
+  SiDocker,
+  SiPython,
+  SiJavascript,
+  SiVuedotjs,
+  SiCplusplus,
+  SiRust,
+  SiPostgresql,
 } from "react-icons/si";
 import { motion, useAnimate } from "framer-motion";
 import { gsap } from "gsap";
@@ -20,7 +27,7 @@ export const ClipPathLinksComponent: React.FC = () => {
   return (
     <div className="bg-black p-4 md:p-8">
       <motion.h1 
-        className="text-5xl font-extrabold text-transparent bg-clip-text bg-[#E3E3DE]  uppercase tracking-widest shadow-lg mb-8 transition-transform duration-500 hover:scale-105"
+        className="text-5xl font-extrabold text-transparent bg-clip-text bg-[#E3E3DE] uppercase tracking-widest shadow-lg mb-8 transition-transform duration-500 hover:scale-105"
       >
         Tech Stack
       </motion.h1>
@@ -30,7 +37,6 @@ export const ClipPathLinksComponent: React.FC = () => {
     </div>
   );
 };
-
 const ClipPathLinks: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -41,7 +47,6 @@ const ClipPathLinks: React.FC = () => {
         start: "top center",
         end: "bottom center",
         toggleActions: "play none none reverse",
-        // Adjust the animation when scrolling up or down
         onEnter: () => {
           gsap.to(containerRef.current, {
             opacity: 1,
@@ -73,7 +78,6 @@ const ClipPathLinks: React.FC = () => {
       },
     });
 
-    // Initial state for the element
     gsap.set(containerRef.current, { opacity: 0, y: 50 });
 
     return () => {
@@ -93,11 +97,21 @@ const ClipPathLinks: React.FC = () => {
         <LinkBox Icon={SiPrisma} href="#" />
         <LinkBox Icon={SiTailwindcss} href="#" />
       </div>
-      <div className="grid grid-cols-3 divide-x divide-neutral-900">
+      <div className="grid grid-cols-4 divide-x divide-neutral-900">
         <LinkBox Icon={SiMongodb} href="#" />
         <LinkBox Icon={SiExpo} href="#" />
         <LinkBox Icon={SiTypescript} href="#" />
-        {/* <LinkBox Icon={FaDocker} href="#" /> */}
+        <LinkBox Icon={SiDocker} href="#" />
+      </div>
+      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+        <LinkBox Icon={SiPython} href="#" />
+        <LinkBox Icon={SiVuedotjs} href="#" />
+        <LinkBox Icon={SiJavascript} href="#" />
+        <LinkBox Icon={SiCplusplus} href="#" />
+      </div>
+      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+        <LinkBox Icon={SiRust} href="#" /> 
+        <LinkBox Icon={SiPostgresql} href="#" />  
       </div>
     </div>
   );

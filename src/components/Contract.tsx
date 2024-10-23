@@ -73,7 +73,7 @@ const ExampleContent = () => {
   }, []);
 
   return (
-    <div className="relative grid h-screen place-content-center space-y-6 p-8">
+    <div className="relative grid h-screen place-content-center space-y-6 p-8 bg-black">
       <p
         ref={textRef}
         className="text-center text-6xl font-black text-neutral-50"
