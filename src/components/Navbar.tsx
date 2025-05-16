@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import Link from 'next/link';
 
 const Navbar = () => {
-  const scrollToSection = (event: any, sectionId: any) => {
+  const scrollToSection = (event: React.MouseEvent, sectionId: string) => {
     event.preventDefault();
     const section = document.getElementById(sectionId);
     if (section) {
@@ -12,48 +11,49 @@ const Navbar = () => {
   };
 
   return (
-    <header className="top-0 z-40 w-full px-4 bg-black">
-      <div className="mt-6 flex grid-cols-12 flex-row items-start justify-between gap-x-6 lg:grid lg:items-center">
-        <div className="col-span-8 flex flex-col items-start gap-x-10 gap-y-4 lg:flex-row lg:items-center">
-          <div className="w-fit">
-            <Link aria-label="Back to Home" href="/">
-              <span className="text-lg font-extrabold leading-snug tracking-wider text-gray-400">
-                TA THAI<sup>©</sup>
+    <header className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-sm border-b border-gray-100">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+          <div className="flex flex-col md:flex-row md:items-center gap-4">
+            <Link 
+              href="/" 
+              aria-label="Back to Home"
+              className="group transition-all duration-200"
+            >
+              <span className="text-xl font-bold tracking-tight text-gray-800 group-hover:text-gray-600 transition-colors">
+                TA THAI<sup className="text-gray-400 ml-0.5">©</sup>
               </span>
             </Link>
+            <span className="text-sm font-medium text-gray-500 md:text-base">
+              Fullstack Developer
+            </span>
           </div>
-          <span className="flex w-fit max-w-[18ch] text-lg font-semibold leading-snug text-gray-400 sm:max-w-max md:text-lg 2xl:text-xl">
-            (Web & Mobile App Developer)
-          </span>
-        </div>
 
-        <nav className="col-span-4 flex justify-end text-lg text-gray-400 md:text-lg 2xl:text-xl mr-2">
-          <ul className="flex flex-col items-start gap-x-4 md:flex-row">
-            {['Works', 'About', 'Contact'].map((item, index) => (
-              <li key={index} className="flex leading-snug">
-                <Link
-                  className="font-bold relative overflow-y-hidden w-full group h-fit"
-                  href={`#${item.toLowerCase()}`}
-                  onClick={(e) => scrollToSection(e, item.toLowerCase())} // Add onClick handler
-                >
-                  <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-500">
-                    {item}
-                  </span>
-                  <span className="absolute inset-0 group-hover:translate-y-0 translate-y-5 xl:translate-y-8 transition-all ease-in-out-circ duration-500 underline flex-nowrap whitespace-nowrap">
-                    {item}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav className="w-full md:w-auto">
+            <ul className="flex flex-col gap-6 md:flex-row md:gap-8">
+              {['Works', 'About', 'Contact'].map((item) => (
+                <li key={item}>
+                  <Link
+                    href={`#${item.toLowerCase()}`}
+                    onClick={(e) => scrollToSection(e, item.toLowerCase())}
+                    className="relative group font-medium text-gray-600 hover:text-gray-900 transition-colors"
+                  >
+                    <div className="overflow-hidden h-6">
+                      <div className="flex flex-col items-start transition-transform duration-300 ease-out group-hover:-translate-y-6">
+                        <span>{item}</span>
+                        <span className="text-gray-900 underline underline-offset-4 decoration-1 decoration-gray-300">
+                          {item}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-0 h-px bg-gray-900 transition-all duration-300 group-hover:w-full" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </div>
-      <svg className="absolute cursor-none">
-        <filter id="grainy">
-          <feTurbulence type="turbulence" baseFrequency="0.5"></feTurbulence>
-          <feColorMatrix type="saturate" values="0"></feColorMatrix>
-        </filter>
-      </svg>
     </header>
   );
 };

@@ -2,11 +2,13 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import HireMe from '../HireMe';
 import Link from 'next/link';
-const links = [
+
+const socialLinks = [
   { name: 'LINKEDIN', href: 'https://www.linkedin.com/in/vanthaita/' },
   { name: 'GITHUB', href: 'https://github.com/vanthaita/' },
   { name: 'INSTAGRAM', href: 'https://instagram.com' }
 ];
+
 interface MenuProps {
   isOpen: boolean;
   toggleMenu: () => void;
@@ -15,18 +17,22 @@ interface MenuProps {
 const Menu: React.FC<MenuProps> = ({ isOpen, toggleMenu }) => {
   const menuVariants = {
     hidden: {
-      x: '100%', 
-      transition: { duration: 0.5, ease: 'easeInOut' },
+      x: '100%',
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
     },
     visible: {
-      x: 0, 
-      transition: { duration: 0.7, ease: 'easeInOut' },
+      x: 0,
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
     },
   };
 
   const linkVariants = {
     hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+    }
   };
 
   const containerVariants = {
@@ -34,73 +40,91 @@ const Menu: React.FC<MenuProps> = ({ isOpen, toggleMenu }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, 
+        staggerChildren: 0.1,
+        delayChildren: 0.3
       },
     },
   };
+
+  const navItems = ['HOME', 'WORKS', 'ABOUT', 'CONTACT'];
 
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed top-0 right-0 h-full bg-[#0D0D0D] text-white z-[9999] flex flex-col p-8 w-full md:w-1/2 shadow-xl"
+          className="fixed top-0 right-0 h-full bg-white text-gray-900 z-[9999] flex flex-col p-8 w-full md:w-1/2 lg:w-1/3 shadow-lg"
           initial="hidden"
           animate="visible"
           exit="hidden"
           variants={menuVariants}
         >
+          {/* Close Button */}
           <motion.button
             onClick={toggleMenu}
-            className="flex items-center justify-center w-14 h-14 rounded-full bg-[#E3E3DE] shadow-lg text-black fixed top-5 right-5 z-[9998] text-2xl"
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-900 text-white fixed top-6 right-6 z-50 text-xl"
             whileHover={{ scale: 1.1, rotate: 90 }}
             whileTap={{ scale: 0.9 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           >
             ✕
           </motion.button>
+
+          {/* Main Navigation */}
           <motion.nav
-            className=" font-bold md:text-8xl text-7xl mt-8 flex flex-col tracking-wide leading-none space-y-[-0.2rem]"
+            className="font-bold text-5xl md:text-6xl lg:text-7xl mt-20 flex flex-col space-y-2"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            >
-            {['HOME', 'WORKS', 'ABOUT', 'CONTACT'].map((link, index) => (
-                <motion.a
+          >
+            {navItems.map((item, index) => (
+              <motion.a
                 key={index}
-                href={`#${link.toLowerCase()}`}
+                href={`#${item.toLowerCase()}`}
                 onClick={toggleMenu}
                 variants={linkVariants}
-                whileHover={{ x: 15, color: '#E5E5E5' }} 
-                transition={{ type: 'tween', duration: 0.3 }}
-                className="hover:underline transition-all"
-                >
-                {link}
-                </motion.a>
+                whileHover={{ 
+                  x: 15, 
+                  color: '#4f46e5',
+                  transition: { duration: 0.3 }
+                }}
+                className="hover:underline underline-offset-8 decoration-2"
+              >
+                {item}
+              </motion.a>
             ))}
-            </motion.nav>
+          </motion.nav>
 
+          {/* Footer Section */}
           <motion.div
-            className="mt-auto text-xl space-y-4 leading-none" 
+            className="mt-auto space-y-6 pt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.5 }}
           >
-            <div className="flex flex-row items-start gap-x-4 mt-4">
-              {links.map((link) => (
+            {/* Social Links */}
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map((link) => (
                 <Link
                   key={link.name}
-                  className="font-bold relative overflow-y-hidden group h-fit border z-40"
-                  href={link.href} 
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative group overflow-hidden px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-all"
                 >
-                  <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-500 px-3 py-4">
-                    {link.name} 
+                  <span className="block group-hover:-translate-y-6 transition-transform duration-300">
+                    {link.name}
                   </span>
-                  <span className="absolute inset-0 group-hover:translate-y-0  translate-y-5 xl:translate-y-8 transition-all ease-in-out-circ duration-500 underline flex-nowrap whitespace-nowrap px-3 py-4">
+                  <span className="absolute inset-0 flex items-center justify-center translate-y-6 group-hover:translate-y-0 transition-transform duration-300 text-indigo-600">
                     {link.name}
                   </span>
                 </Link>
               ))}
             </div>
-            <HireMe />
+
+            {/* Hire Me Button */}
+            <div className="pt-4">
+              <HireMe />
+            </div>
           </motion.div>
         </motion.div>
       )}

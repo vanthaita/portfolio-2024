@@ -1,72 +1,90 @@
-'use client';
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import LocalTime from './LocalTime';
-import { ScreenFitText } from './ScreenFillText';
+'use client'
+import React from 'react';
 
-const HomePage: React.FC = () => {
-  const svgRef = useRef<SVGSVGElement | null>(null);
-  const localTimeRef = useRef<HTMLDivElement | null>(null);
-  const pageRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (svgRef.current) {
-      gsap.fromTo(
-        svgRef.current,
-        { opacity: 0, scale: 0.5 },
-        { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' }
-      );
-    }
-
-    if (localTimeRef.current) {
-      gsap.fromTo(
-        localTimeRef.current,
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, delay: 0.5 }
-      );
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (pageRef.current) {
-        gsap.to(pageRef.current, {
-          y: -window.scrollY / 2,
-          ease: 'power1.out',
-        });
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+const Hero = () => {
   return (
-    <div className="relative h-[90vh] px-4"> 
-      <div ref={pageRef} className="flex flex-col items-center h-full relative">
-        <div className="container flex justify-center ms:items-center ms:flex-col-reverse">
-          <ScreenFitText />
-          <svg ref={svgRef} width="1382.4" height="179.2" viewBox="0 0 1382.4 179.2" xmlns="http://www.w3.org/2000/svg" className='mt-12'>
-            <g id="svgGroup" strokeLinecap="round" fillRule="nonzero" fontSize="9pt" stroke="#000" strokeWidth="0.25mm" fill="#B7B7B7">
-              <path d="M 67.84 179.2 L 67.84 28.672 L 0 28.672 L 0 0 L 167.68 0 L 167.68 28.672 L 99.84 28.672 L 99.84 179.2 L 67.84 179.2 Z" id="0"/>
-              <path d="M 322.816 179.2 L 286.208 179.2 L 269.056 143.36 L 198.912 143.36 L 182.016 179.2 L 144.64 179.2 L 233.984 0 L 322.816 179.2 Z M 212.224 114.688 L 255.232 114.688 L 233.472 69.632 L 212.224 114.688 Z" id="1"/>
-              <path d="M 286.464 0 L 323.584 0 L 375.808 109.824 L 427.776 0 L 464.384 0 L 375.552 179.2 L 286.464 0 Z" id="2"/>
-              <path d="M 604.416 179.2 L 567.808 179.2 L 550.656 143.36 L 480.512 143.36 L 463.616 179.2 L 426.24 179.2 L 515.584 0 L 604.416 179.2 Z M 493.824 114.688 L 536.832 114.688 L 515.072 69.632 L 493.824 114.688 Z" id="3"/>
-              <path d="M 626.688 0 L 631.296 0 L 730.112 102.912 L 730.112 0 L 762.112 0 L 762.112 179.2 L 756.992 179.2 L 658.688 76.032 L 658.688 179.2 L 626.688 179.2 Z" id="4"/>
-              <path d="M 853.248 179.2 L 853.248 28.672 L 785.408 28.672 L 785.408 0 L 953.088 0 L 953.088 28.672 L 885.248 28.672 L 885.248 179.2 L 853.248 179.2 Z" id="5"/>
-              <path d="M 977.92 179.2 L 977.92 0 L 1009.92 0 L 1009.92 77.056 L 1097.728 77.056 L 1097.728 0 L 1129.728 0 L 1129.728 179.2 L 1097.728 179.2 L 1097.728 105.728 L 1009.92 105.728 L 1009.92 179.2 L 977.92 179.2 Z" id="6"/>
-              <path d="M 1328.128 179.2 L 1291.52 179.2 L 1274.368 143.36 L 1204.224 143.36 L 1187.328 179.2 L 1149.952 179.2 L 1239.296 0 L 1328.128 179.2 Z M 1217.536 114.688 L 1260.544 114.688 L 1238.784 69.632 L 1217.536 114.688 Z" id="7"/>
-              <path d="M 1350.4 179.2 L 1350.4 0 L 1382.4 0 L 1382.4 179.2 L 1350.4 179.2 Z" id="8"/>
-            </g>
-          </svg>
+    <section className="bg-[#fefefe] min-h-screen flex items-center p-4 md:p-8 lg:p-12">
+      <div className="p-8 w-full">
+        <div className="flex flex-col md:flex-row items-start gap-12 md:gap-24 mb-24">
+          <div className="order-2 md:order-1 flex flex-col items-center md:items-start">
+            <div className="writing-mode-vertical-rl text-vertical h-[420px] flex items-center justify-center">
+              <div className="relative">
+                <h1 className="text-5xl md:text-6xl text-gray-900 font-shodo tracking-wider leading-[1.4]">
+                  一
+                  期
+                  一
+                  会
+                </h1>
+                <div className="absolute -right-6 top-0 h-full w-px bg-gray-300"></div>
+              </div>
+            </div>
+            <p className="text-sm text-gray-500 mt-4">Ichigo Ichie</p>
+          </div>
+
+          <div className="order-1 md:order-2 flex-1">
+            <div className="flex items-end gap-4 mb-12">
+              <span className="text-6xl text-gray-900 font-light font-serif">TA VAN THAI</span>
+              <div className="h-px flex-1 bg-gray-300 mb-6"></div>
+            </div>
+
+            <p className="text-xl text-gray-600 leading-relaxed mb-12 max-w-3xl">
+              <span className="font-medium">Ichigo Ichie (一期一会)</span> - 
+              I approach each project as a once-in-a-lifetime opportunity, 
+              blending the essence of tradition with modern technology 
+              to create unique digital experiences.
+            </p>
+
+            <div className="space-y-8 max-w-3xl">
+              <h2 className="text-2xl md:text-3xl font-light text-gray-900 leading-tight">
+                Fullstack artisan crafting digital experiences with precision
+              </h2>
+              <div className="space-y-6 text-gray-600">
+                <p className="text-lg leading-relaxed">
+                  Specializing in Vue/Nuxt and Next.js ecosystems, I build applications 
+                  with the philosophy of &quot;right tool for the right purpose&quot;. 
+                  Backend expertise includes Node.js, PHP, PostgreSQL with Prisma, and MongoDB.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  <span className="font-medium text-gray-700">Beyond code: </span>
+                  Football and badminton enthusiast. Native Vietnamese speaker 
+                  (basic Japanese/limited working proficiency in English).
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <LocalTime />
+
+        <div className="border-t border-gray-100 pt-12">
+          <div className="flex flex-col md:flex-row gap-16">
+            <div className="md:w-1/3 flex justify-center">
+              <div className="writing-mode-vertical-rl text-vertical h-[280px] flex items-center justify-center">
+                <div className="inline-block p-4 bg-stone-50 border border-stone-300 shadow-sm rounded-lg">
+                  <span className="text-xl text-gray-500 font-shodo">和洋折衷</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="md:w-2/3 space-y-8">
+              <h2 className="text-xl md:text-2xl font-light text-gray-900 leading-relaxed">
+                Fullstack developer embracing the spirit of Ichigo Ichie
+              </h2>
+              <div className="space-y-6 text-gray-600">
+                <p className="text-lg leading-relaxed">
+                  Leveraging Vue/Nuxt and Next.js, I build applications with a &quot;right tool for the right job&quot; philosophy.
+                  Specializing in backend architecture with Node.js, PHP, PostgreSQL (Prisma), and MongoDB.
+                </p>
+                <p className="text-lg leading-relaxed">
+                  <span className="font-medium text-gray-700">Beyond development:</span>
+                  Football and badminton enthusiast. Native Vietnamese speaker
+                  (basic Japanese/limited working proficiency in English).
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default HomePage;
+export default Hero;

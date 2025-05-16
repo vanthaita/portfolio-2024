@@ -71,12 +71,12 @@ const AboutMe: React.FC = () => {
   return (
     <motion.div
       ref={aboutRef}
-      className="min-h-screen flex flex-col justify-center items-center px-4 sm:px-8 lg:px-12 relative"
+      className="min-h-screen flex flex-col justify-center items-center p-4 md:p-8 lg:p-12 relative bg-white"
       initial="hidden"
       animate={isInViewAbout ? 'visible' : 'hidden'}
       variants={staggeredTextVariants}
     >
-      <div className="absolute top-4 left-4 mt-8 flex flex-col justify-between w-full sm:w-1/2 h-full">
+      <div className="absolute top-1/2 left-4 -translate-y-1/2 mt-8 flex flex-col justify-between w-full sm:w-1/2 h-auto p-4 md:p-8 lg:p-12">
         <motion.svg
           stroke="currentColor"
           fill="none"
@@ -84,8 +84,7 @@ const AboutMe: React.FC = () => {
           viewBox="6 6 12 12"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="m-0 size-8 p-0 sm:w-12 md:w-16"
-          color="#B7B7B7"
+          className="m-0 size-8 p-0 sm:w-12 md:w-16 mb-8 text-gray-400"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -95,28 +94,66 @@ const AboutMe: React.FC = () => {
           <polyline points="17 7 17 17 7 17"></polyline>
         </motion.svg>
 
-        <motion.div className="w-auto mb-20" variants={staggeredTextVariants}>
-          <span className="text-white text-lg sm:text-2xl lg:text-4xl whitespace-pre-wrap tracking-wide opacity-70">
-            Passionate developer and entrepreneur leveraging technology for innovative solutions. Strong background in software development. Committed to continuous learning and collaboration for positive change.
-          </span>
+        <motion.div className="w-auto space-y-6" variants={staggeredTextVariants}>
+          <motion.p 
+            className="text-gray-600 text-lg sm:text-xl lg:text-2xl leading-relaxed"
+            variants={textItemVariants}
+          >
+            Full Stack Developer (<span className="text-gray-900 font-medium">JavaScript/TypeScript</span>, <span className="text-gray-900 font-medium">NestJS</span>, <span className="text-gray-900 font-medium">Next.js</span>) passionate about building impactful solutions.
+          </motion.p>
+          
+          <motion.p 
+            className="text-gray-600 text-lg sm:text-xl lg:text-2xl leading-relaxed"
+            variants={textItemVariants}
+          >
+            Currently studying at <span className="text-gray-900 font-medium">University of Information Technology</span> (Vietnam) while independently exploring <span className="text-gray-900 font-medium">Generative AI</span>, <span className="text-gray-900 font-medium">cloud architectures</span>, and <span className="text-gray-900 font-medium">Open Source</span> tools.
+          </motion.p>
+          
+          <motion.p 
+            className="text-gray-600 text-lg sm:text-xl lg:text-2xl leading-relaxed"
+            variants={textItemVariants}
+          >
+            Thrive at the intersection of <span className="text-gray-900 font-medium">rigorous engineering</span> and <span className="text-gray-900 font-medium">creative experimentation</span>.
+          </motion.p>
+          
+          <motion.p 
+            className="text-gray-600 text-lg sm:text-xl lg:text-2xl leading-relaxed mt-8 italic"
+            variants={textItemVariants}
+          >
+            Indie builder with a love for shipping products from idea to production.
+          </motion.p>
         </motion.div>
       </div>
 
       <motion.div
         ref={textRef}
-        className="absolute top-4 right-4 p-4 rounded-lg shadow-lg opacity-70"
+        className="absolute top-1/2 right-4 -translate-y-1/2 p-4 md:p-8 lg:p-12 hidden md:block"
         initial="hidden"
         animate={isInViewText ? 'visible' : 'hidden'}
       >
-        <motion.ul className="text-4xl sm:text-6xl lg:text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
-          DEVELOPER
-        </motion.ul>
-        <motion.ul className="text-4xl sm:text-6xl lg:text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
-          BUSINESS
-        </motion.ul>
-        <motion.ul className="text-4xl sm:text-6xl lg:text-9xl font-bold text-white whitespace-pre-wrap hover:underline cursor-pointer" variants={textItemVariants}>
-          TO LIVE
-        </motion.ul>
+        <motion.div className="space-y-4 sm:space-y-8 p-4 md:p-8 lg:p-12" variants={staggeredTextVariants}>
+          <motion.h2 
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-800 hover:text-blue-500 transition-colors cursor-pointer"
+            variants={textItemVariants}
+            whileHover={{ x: 10 }}
+          >
+            DEVELOPER
+          </motion.h2>
+          <motion.h2 
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-800 hover:text-green-500 transition-colors cursor-pointer"
+            variants={textItemVariants}
+            whileHover={{ x: 10 }}
+          >
+            BUILDER
+          </motion.h2>
+          <motion.h2 
+            className="text-4xl sm:text-6xl lg:text-7xl font-bold text-gray-800 hover:text-purple-500 transition-colors cursor-pointer"
+            variants={textItemVariants}
+            whileHover={{ x: 10 }}
+          >
+            LEARNER
+          </motion.h2>
+        </motion.div>
       </motion.div>
     </motion.div>
   );

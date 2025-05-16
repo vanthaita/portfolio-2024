@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { IoMdArrowDown } from "react-icons/io";
+import { FiGithub, FiLinkedin, FiTwitter } from "react-icons/fi";
+import { HiDownload } from "react-icons/hi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -8,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ContactComponent = () => {
   return (
-    <div className="relative overflow-hidden bg-neutral-950 min-h-screen">
+    <div className="relative overflow-hidden bg-white min-h-screen">
       <ExampleContent />
     </div>
   );
@@ -18,87 +20,112 @@ const ExampleContent = () => {
   const textRef = useRef(null);
   const arrowRef = useRef(null);
   const emailRef = useRef(null);
+  const socialRef = useRef(null);
+  const resumeRef = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: textRef.current,
-          start: "top 80%", 
-          end: "top 50%", 
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
+    const elements = [
+      { ref: textRef, delay: 0 },
+      { ref: arrowRef, delay: 0.2 },
+      { ref: emailRef, delay: 0.4 },
+      { ref: socialRef, delay: 0.6 },
+      { ref: resumeRef, delay: 0.8 }
+    ];
 
-    gsap.fromTo(
-      arrowRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: arrowRef.current,
-          start: "top 85%",
-          end: "top 55%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    gsap.fromTo(
-      emailRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1.4,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: emailRef.current,
-          start: "top 90%", 
-          end: "top 60%", 
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
+    elements.forEach(({ ref, delay }) => {
+      gsap.fromTo(
+        ref.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 85%",
+            end: "top 60%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
   }, []);
 
   return (
-    <div className="relative grid h-screen place-content-center space-y-6 p-8 bg-black">
+    <div className="relative grid h-screen place-content-center space-y-8 p-8 bg-white">
       <p
         ref={textRef}
-        className="text-center text-6xl font-black text-neutral-50"
+        className="text-center text-5xl md:text-6xl font-black text-gray-900"
       >
         Let&apos;s make it happen
       </p>
+      
       <div
         ref={arrowRef}
         className="w-full flex justify-center items-center"
       >
-        <IoMdArrowDown className="text-white text-3xl animate-bounce" />
+        <IoMdArrowDown className="text-gray-600 text-3xl animate-bounce" />
       </div>
 
       <div ref={emailRef} className="w-full flex justify-center items-center">
-        
-          <Link
-              className="font-bold relative overflow-y-hidden w-full group h-fit text-center text-white uppercase justify-center items-center flex"
-              href="mailto:thaitv225@gmail.com"
-            >
-            <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-500">
-              tathai225@gmail.com
-            </span>
-            <span className="absolute inset-0 group-hover:translate-y-0 translate-y-5 xl:translate-y-8 transition-all ease-in-out-circ duration-500 underline flex-nowrap whitespace-nowrap">
-              tathai225@gmail.com
-            </span>
+        <Link
+          href="mailto:tathai225@gmail.com"
+          className="font-bold relative overflow-y-hidden w-fit group h-fit text-center"
+        >
+          <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-300 text-gray-700">
+            tathai225@gmail.com
+          </span>
+          <span className="absolute inset-0 group-hover:translate-y-0 translate-y-5 transition-all ease-in-out-circ duration-300 underline underline-offset-4 decoration-gray-300 flex-nowrap whitespace-nowrap text-gray-900">
+            tathai225@gmail.com
+          </span>
+        </Link>
+      </div>
+
+      <div ref={socialRef} className="flex justify-center space-x-6 pt-4">
+        <Link 
+          href="https://github.com/yourusername" 
+          target="_blank"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+          aria-label="GitHub"
+        >
+          <FiGithub className="w-6 h-6" />
+        </Link>
+        <Link 
+          href="https://linkedin.com/in/yourprofile" 
+          target="_blank"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+          aria-label="LinkedIn"
+        >
+          <FiLinkedin className="w-6 h-6" />
+        </Link>
+        <Link 
+          href="https://twitter.com/yourhandle" 
+          target="_blank"
+          className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+          aria-label="Twitter"
+        >
+          <FiTwitter className="w-6 h-6" />
+        </Link>
+      </div>
+
+      <div ref={resumeRef} className="flex flex-col md:flex-row justify-center gap-4 pt-8">
+        <Link
+          href="/resume-en.pdf"
+          download
+          className="flex items-center justify-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-300"
+        >
+          <HiDownload className="mr-2" />
+          Download Resume (English)
+        </Link>
+        <Link
+          href="/resume-jp.pdf"
+          download
+          className="flex items-center justify-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-300"
+        >
+          <HiDownload className="mr-2" />
+          履歴書をダウンロード (日本語)
         </Link>
       </div>
     </div>

@@ -25,9 +25,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const ClipPathLinksComponent: React.FC = () => {
   return (
-    <div className="bg-black p-4 md:p-8">
+    <div className="bg-white p-4 md:p-12">
       <motion.h1 
-        className="text-5xl font-extrabold text-transparent bg-clip-text bg-[#E3E3DE] uppercase tracking-widest shadow-lg mb-8 transition-transform duration-500 hover:scale-105"
+        className="text-5xl font-extrabold text-black uppercase tracking-widest mb-12 transition-transform duration-500 hover:scale-105"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
         Tech Stack
       </motion.h1>
@@ -37,6 +40,7 @@ export const ClipPathLinksComponent: React.FC = () => {
     </div>
   );
 };
+
 const ClipPathLinks: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -86,32 +90,38 @@ const ClipPathLinks: React.FC = () => {
   }, []);
 
   return (
-    <div className="divide-y divide-neutral-900 border border-neutral-900" ref={containerRef}>
-      <div className="grid grid-cols-2 divide-x divide-neutral-900">
+    <div 
+      className=" overflow-hidden border"
+      ref={containerRef}
+    >
+      <div className="grid grid-cols-2 divide-x divide-gray-200">
         <LinkBox Icon={SiNextdotjs} href="#" />
         <LinkBox Icon={SiNestjs} href="#" />
       </div>
-      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+      <div className="grid grid-cols-4 divide-x divide-gray-200">
         <LinkBox Icon={SiNodedotjs} href="#" />
         <LinkBox Icon={SiReact} href="#" />
         <LinkBox Icon={SiPrisma} href="#" />
         <LinkBox Icon={SiTailwindcss} href="#" />
       </div>
-      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+      <div className="grid grid-cols-4 divide-x divide-gray-200">
         <LinkBox Icon={SiMongodb} href="#" />
         <LinkBox Icon={SiExpo} href="#" />
         <LinkBox Icon={SiTypescript} href="#" />
         <LinkBox Icon={SiDocker} href="#" />
       </div>
-      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+      <div className="grid grid-cols-4 divide-x divide-gray-200">
         <LinkBox Icon={SiPython} href="#" />
         <LinkBox Icon={SiVuedotjs} href="#" />
         <LinkBox Icon={SiJavascript} href="#" />
         <LinkBox Icon={SiCplusplus} href="#" />
       </div>
-      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+      <div className="grid grid-cols-4 divide-x divide-gray-200">
         <LinkBox Icon={SiRust} href="#" /> 
-        <LinkBox Icon={SiPostgresql} href="#" />  
+        <LinkBox Icon={SiPostgresql} href="#" />
+        <div className="col-span-2 bg-gradient-to-r from-blue-50 to-purple-50 flex items-center justify-center">
+          <p className="text-gray-600 font-medium">More coming soon...</p>
+        </div>
       </div>
     </div>
   );
@@ -180,6 +190,7 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href }) => {
 
     animate(scope.current, {
       clipPath: ENTRANCE_KEYFRAMES[side],
+      backgroundColor: "#f8fafc",
     });
   };
 
@@ -188,6 +199,7 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href }) => {
 
     animate(scope.current, {
       clipPath: EXIT_KEYFRAMES[side],
+      backgroundColor: "#ffffff", 
     });
   };
 
@@ -196,18 +208,18 @@ const LinkBox: React.FC<LinkBoxProps> = ({ Icon, href }) => {
       href={href}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative grid h-20 w-full place-content-center sm:h-28 md:h-36"
+      className="relative grid h-24 w-full place-content-center sm:h-28 md:h-32 transition-all duration-300 hover:shadow-inner"
     >
-      <Icon className="text-xl sm:text-3xl lg:text-4xl text-white" /> 
+      <Icon className="text-2xl sm:text-3xl lg:text-4xl text-gray-700" />
 
       <div
         ref={scope}
         style={{
           clipPath: BOTTOM_RIGHT_CLIP,
         }}
-        className="absolute inset-0 grid place-content-center bg-neutral-900 text-white"
+        className="absolute inset-0 grid place-content-center bg-gray-50"
       >
-        <Icon className="text-xl sm:text-3xl md:text-4xl" />
+        <Icon className="text-2xl sm:text-3xl md:text-4xl text-blue-600" />
       </div>
     </a>
   );

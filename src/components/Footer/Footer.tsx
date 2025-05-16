@@ -21,43 +21,62 @@ export default function Footer() {
     },
     {
       id: 4,
-      href: "/",
-      label: "Resume",
+      href: "/resume-en.pdf",
+      label: "Resume (EN)",
+      download: true
     },
     {
       id: 5,
       href: "https://github.com/vanthaita",
       label: "Github",
+      external: true
     },
     {
       id: 6,
-      href: "/",
+      href: "/legal",
       label: "Legal",
     },
   ];
 
   return (
-    <footer className="mb-16 sm:mb-0 text-white pt-10 max-w-[91%] w-full mx-auto">
-      <div className="border-b border-b-gray-400 pb-6 w-full">
+    <footer className="mb-16 sm:mb-0 text-gray-900 pt-10 max-w-[91%] w-full mx-auto">
+      <div className="border-b border-b-gray-200 pb-6 w-full">
         <span className="sr-only">Portfolio Footer</span>
         <FooterTitle />
       </div>
-      <div className="flex flex-row gap-y-12 gap-x-2  items-start justify-between pt-6 pb-10 text-text">
-        <div className="gap-y-4 b-8 flex flex-col text-base xl:text-h6 2xl:text-h5">
-          <div className="flex w-56 gap-x-1 xl:w-96">
-          <span className="flex flex-col text-heading-3 font-bold leading-tight tracking-heading text-secondary-300 sm:order-first sm:text-heading-2 md:col-span-6"><span>© 2024 <br className="block lg:hidden"/>Ta Thai</span><span>All rights reserved.</span></span>
+      
+      <div className="flex flex-col sm:flex-row gap-8 items-start justify-between pt-6 pb-10">
+        {/* Copyright Section */}
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col">
+            <span className="text-2xl sm:text-3xl font-bold leading-tight text-gray-800">
+              © 2024 <span className="block sm:inline">Ta Thai</span>
+            </span>
+            <span className="text-gray-500 text-sm sm:text-base">
+              All rights reserved.
+            </span>
           </div>
         </div>
-        <ul className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid xl:grid-cols-3 gap-x-8 gap-y-3">
+
+        {/* Links Section */}
+        <ul className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-4">
           {links.map((link) => (
-            <li key={link.id} className="flex w-fit group text-base xl:text-h7 2xl:text-h6">
-              <Link className="group" href={link.href} target={link.id === 5 ? "_blank" : "_self"} rel={link.id === 5 ? "noopener noreferrer" : undefined}>
+            <li key={link.id} className="flex items-center group">
+              <Link
+                className="flex items-center gap-1 text-gray-600 hover:text-gray-900 transition-colors duration-300"
+                href={link.href}
+                target={link.external ? "_blank" : "_self"}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                download={link.download}
+              >
                 {link.label}
+                {link.external && (
+                  <span className="relative overflow-hidden h-4 w-4">
+                    <GoArrowUpRight className="absolute group-hover:-translate-y-4 group-hover:translate-x-4 duration-300 transition-transform ease-in-out-circ text-gray-400" />
+                    <GoArrowUpRight className="absolute group-hover:translate-x-0 duration-300 group-hover:translate-y-0 transition-all ease-in-out-circ translate-y-4 -translate-x-4 text-gray-600" />
+                  </span>
+                )}
               </Link>
-              <span className="relative overflow-hidden h-fit w-fit">
-                <GoArrowUpRight className="group-hover:-translate-y-5 group-hover:translate-x-5 duration-500 transition-transform ease-in-out-circ fill-light-gray stroke-[0.2]" />
-                <GoArrowUpRight className="absolute top-0 group-hover:translate-x-0 duration-500 group-hover:translate-y-0 transition-all ease-in-out-circ translate-y-5 -translate-x-5 fill-light-gray stroke-[0.2]" />
-              </span>
             </li>
           ))}
         </ul>
@@ -65,4 +84,3 @@ export default function Footer() {
     </footer>
   );
 }
-  
