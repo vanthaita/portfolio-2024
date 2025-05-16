@@ -9,69 +9,78 @@ import AboutMe from '@/components/About';
 import ContractMePage from '@/components/Contract';
 import Footer from '@/components/Footer/Footer';
 
-const fadeInVariants = {
+const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.2,
+      when: "beforeChildren"
+    } 
+  },
 };
 
-
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 const Section = ({ children, id, className }: { children: React.ReactNode; id: string; className?: string }) => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref, inView } = useInView({ 
+    triggerOnce: true, 
+    threshold: 0.1,
+    rootMargin: '-50px 0px' 
+  });
 
   return (
-    <motion.div
+    <motion.section
       id={id}
       ref={ref}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      variants={fadeInVariants}
+      variants={sectionVariants}
       className={className}
     >
-      {children}
-    </motion.div>
+      <motion.div variants={childVariants}>
+        {children}
+      </motion.div>
+    </motion.section>
   );
 };
 
 const Page: React.FC = () => {
-
   return (
     <div className="relative">
-      <motion.div
-        className="fixed pointer-events-none z-50"
-        style={{
-       
-          width: 100,
-          height: 100,
-          borderRadius: "50%",
-          border: "2px solid rgba(255, 255, 255, 0.5)",
-          background: "rgba(255, 255, 255, 0.1)",
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [1, 0.8, 1],
-        }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
       <>
         <Section id="home" className='min-h-screen'>
           <HomePage />
         </Section>
-         <Section id="about" className='min-h-screen'>
+        
+        <Section id="about" className='min-h-screen'>
           <AboutMe />
         </Section>
-        <Section id="works" className='space-y-20  min-h-screen'>
+        
+        <div id="works" className='space-y-20 min-h-screen'>
           <HoverImageLinks />
+        </div>
+        <div>
           <ClipPathLinksComponent />
-        </Section>
+        </div>
         <Section id="contact" className='min-h-screen'>
           <ContractMePage />
         </Section>
-        <Section id="footer" className=' md:min-h-[40vh] lg:md:min-h-[40vh] min-h-[30vh] justify-center flex items-center'>
+        
+        <Section id="footer" className=''>
           <Footer />
         </Section>
       </>

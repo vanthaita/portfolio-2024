@@ -42,7 +42,7 @@ const Hero = () => {
                 <p className="text-lg leading-relaxed">
                   Specializing in Vue/Nuxt and Next.js ecosystems, I build applications 
                   with the philosophy of &quot;right tool for the right purpose&quot;. 
-                  Backend expertise includes Node.js, PHP, PostgreSQL with Prisma, and MongoDB.
+                  Backend expertise includes Node.js, PostgreSQL with Prisma, and MongoDB.
                 </p>
                 <p className="text-lg leading-relaxed">
                   <span className="font-medium text-gray-700">Beyond code: </span>
@@ -71,7 +71,7 @@ const Hero = () => {
               <div className="space-y-6 text-gray-600">
                 <p className="text-lg leading-relaxed">
                   Leveraging Vue/Nuxt and Next.js, I build applications with a &quot;right tool for the right job&quot; philosophy.
-                  Specializing in backend architecture with Node.js, PHP, PostgreSQL (Prisma), and MongoDB.
+                  Specializing in backend architecture with Node.js, PostgreSQL (Prisma), and MongoDB.
                 </p>
                 <p className="text-lg leading-relaxed">
                   <span className="font-medium text-gray-700">Beyond development:</span>

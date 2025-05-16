@@ -85,7 +85,7 @@ const ExampleContent = () => {
 
       <div ref={socialRef} className="flex justify-center space-x-6 pt-4">
         <Link 
-          href="https://github.com/yourusername" 
+          href="https://github.com/vanthaita" 
           target="_blank"
           className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
           aria-label="GitHub"
@@ -93,7 +93,7 @@ const ExampleContent = () => {
           <FiGithub className="w-6 h-6" />
         </Link>
         <Link 
-          href="https://linkedin.com/in/yourprofile" 
+          href="https://www.linkedin.com/in/vanthaita/" 
           target="_blank"
           className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
           aria-label="LinkedIn"
@@ -101,7 +101,7 @@ const ExampleContent = () => {
           <FiLinkedin className="w-6 h-6" />
         </Link>
         <Link 
-          href="https://twitter.com/yourhandle" 
+          href="#" 
           target="_blank"
           className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
           aria-label="Twitter"
@@ -112,16 +112,16 @@ const ExampleContent = () => {
 
       <div ref={resumeRef} className="flex flex-col md:flex-row justify-center gap-4 pt-8">
         <Link
-          href="/resume-en.pdf"
-          download
+          href="/CV-ta-van-thai-en.pdf"
+          download="CV-TaVanThai-English.pdf"
           className="flex items-center justify-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-300"
         >
           <HiDownload className="mr-2" />
           Download Resume (English)
         </Link>
         <Link
-          href="/resume-jp.pdf"
-          download
+          href="/CV-ta-van-thai-jp.pdf"
+          download="CV-TaVanThai-Japanese.pdf"
           className="flex items-center justify-center px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-300"
         >
           <HiDownload className="mr-2" />
