@@ -71,14 +71,15 @@ const ExampleContent = () => {
 
       <div ref={emailRef} className="w-full flex justify-center items-center">
         <Link
-          href="mailto:tathai225@gmail.com"
+          href="mailto:thaitv225@gmail.com"
           className="font-bold relative overflow-y-hidden w-fit group h-fit text-center"
         >
           <span className="flex group-hover:-translate-y-5 group-hover:opacity-0 transition-all ease-in-out-circ duration-300 text-gray-700">
-            tathai225@gmail.com
+            thaitv225@gmail.com
           </span>
           <span className="absolute inset-0 group-hover:translate-y-0 translate-y-5 transition-all ease-in-out-circ duration-300 underline underline-offset-4 decoration-gray-300 flex-nowrap whitespace-nowrap text-gray-900">
-            tathai225@gmail.com
+            haitv225@gmail.com
+
           </span>
         </Link>
       </div>
