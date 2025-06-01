@@ -66,17 +66,14 @@ const Hero = () => {
 
             <div className="md:w-2/3 space-y-8">
               <h2 className="text-xl md:text-2xl font-light text-gray-900 leading-relaxed">
-                Fullstack developer embracing the spirit of Ichigo Ichie
+                Creating thoughtful digital solutions with fullstack versatility
               </h2>
               <div className="space-y-6 text-gray-600">
                 <p className="text-lg leading-relaxed">
-                  Leveraging Vue/Nuxt and Next.js, I build applications with a &quot;right tool for the right job&quot; philosophy.
-                  Specializing in backend architecture with Node.js, PostgreSQL (Prisma), and MongoDB.
+                  With a strong foundation in both frontend and backend, I architect seamless digital experiences using Vue/Nuxt and Next.js on the frontend, paired with robust backend systems powered by Node.js, PostgreSQL (Prisma), and MongoDB.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  <span className="font-medium text-gray-700">Beyond development:</span>
-                  Football and badminton enthusiast. Native Vietnamese speaker
-                  (basic Japanese/limited working proficiency in English).
+                  <span className="font-medium text-gray-700">Rooted in mindfulness:</span> Inspired by the concept of <span className="italic">Ichigo Ichie</span>, I approach development with focus, care, and an appreciation for every unique project moment. I thrive in hackathons, embrace collaboration, and continuously seek to create impactful technology through startup ventures.
                 </p>
               </div>
             </div>
